@@ -1,12 +1,14 @@
 Overview of the project:
-- Used Three.js for creating the visuals of the game. It is responsible for camera, game grid and background
+- Three.js for creating the visuals of the game. It is responsible for camera, game grid and background
 - Html elements are created with JavaScript on top of the Three.js scene
 - Node.js environment handles back end. Back end communicates with MongoDB Atlas with Mongoose library.
 - Games are stored with user's IP address, so that older games will be loaded for user with matching IP address.
+- Tested on safari and chrome browsers
 - Project is hosted with Render. 
     1. Front end at: https://tictactoe-fmwd.onrender.com/
     2. Back end at: https://tictactoe-back.onrender.com/ 
 - No mobile support. On narrow screens html elements can start to stack up, looking clunky.
+
 
 Gameplay Tutorial:
 - https://tictactoe-fmwd.onrender.com/
