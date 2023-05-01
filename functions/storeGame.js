@@ -4,11 +4,13 @@ import { createGameFromColors } from './loadGames.js';
 import { updateWinrate } from './updateWinrate.js';
 import { showAlert } from './showAlert.js';
 import { getIp } from '../main.js';
+import { getURL } from '../main.js';
 
 
 export let gameArray = [];
 export function storeGame(game, turnCount, winner, scene, baseColor) {
-  const url = 'http://localhost:3000/storeGame';
+  const url = `${getURL()}/storeGame`;
+  //const url = 'http://localhost:3000/storeGame';
 
   let turns = []
   let points = []

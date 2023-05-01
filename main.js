@@ -14,11 +14,10 @@ import { hideGameInfo } from './functions/hideGameInfo.js';
 import { getUserIP } from './functions/getUserIp.js';
 
 import './style.css';
-
+const URL = "https://tictactoe-back.onrender.com"
 let USER_IP;
 getUserIP().then(ip => {
   USER_IP = ip;
-  console.log('USER_IP: ', USER_IP)
 }).then(() => {
   loadGames(scene).then(game => {
     for(let i = 0; i < game.length; i++){
@@ -134,6 +133,10 @@ function createGrid() {
 }
 
 export function getIp(){
-  console.log('USER_IP: ', USER_IP)
+  //console.log('USER_IP: ', USER_IP)
   return USER_IP
+}
+export function getURL(){
+  console.log('URL: ', URL)
+  return URL
 }

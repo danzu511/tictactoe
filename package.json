@@ -16,8 +16,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "vite build",
     "serve": "vite preview",
-    "server": "cd server && node app.js"
-  },
+    "server": "cd server && node app.js",
+    "deploy": "git add . && git commit --allow-empty-message -m '' && git push -u origin main"
+},
   "author": "",
   "license": "ISC",
   "description": ""

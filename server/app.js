@@ -4,7 +4,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 const mongoose = require('mongoose');
-const uri = 'mongodb+srv://dan:dan@cluster0.yxibf90.mongodb.net/?retryWrites=true&w=majority'
+const uri = process.env.URI
 const dbName = 'tictactoe'
 const gameSchema = new mongoose.Schema({
   turns: Array,
@@ -55,8 +55,8 @@ app.get('/loadGames', async (req, res) => {
 
     // Send the array of game objects as a response
     res.send(gameObjects);
-}); */
-
+});
+ */
 app.post('/storeGame', async (req, res) => {
   const gameObject = req.body;
 

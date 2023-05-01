@@ -1,9 +1,11 @@
 import axios from "axios";
 import { Grid } from '../models/Grid.js';
 import { getIp } from '../main.js';
+import { getURL } from '../main.js';
 
 export function loadGames(scene) {
-  const url = 'http://localhost:3000/loadGames?ip=' + encodeURIComponent(getIp());
+  const url = `${getURL()}/loadGames?ip=` + encodeURIComponent(getIp())
+  //const url ='http://localhost:3000/loadGames?ip=' + encodeURIComponent(getIp());  
   console.log('url: ', url);
   let gameArray = [];
 
