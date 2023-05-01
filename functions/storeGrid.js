@@ -9,8 +9,8 @@ export default class Game {
 
   storeGrid(newGrid, points) {
     const gridObject = {
-      newGrid: newGrid,
-      points: points
+      newGrid,
+      points,
     };
     this.gridArray.push(gridObject);
   }

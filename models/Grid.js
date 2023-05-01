@@ -13,9 +13,8 @@ export class Grid {
     const cellDepth = 1;
     const cellGeometry = new THREE.BoxGeometry(cellWidth, cellHeight, cellDepth);
 
-
     // Create a material for the grid lines
-    const lineMaterial = new THREE.MeshBasicMaterial({ color: 0x2c2d28, });
+    const lineMaterial = new THREE.MeshBasicMaterial({ color: 0x2c2d28 });
 
     // Create a GLTFExporter instance to export the grid as a GLTF file
     this.gltfExporter = new GLTFExporter();
@@ -28,7 +27,7 @@ export class Grid {
     for (let row = 0; row < this.length; row++) {
       for (let col = 0; col < this.width; col++) {
         // Create a material for the X and O symbols
-        const symbolMaterial = new THREE.MeshBasicMaterial({ color: baseColor});
+        const symbolMaterial = new THREE.MeshBasicMaterial({ color: baseColor });
 
         // Create a mesh for the cell
         const cellMesh = new THREE.Mesh(cellGeometry, symbolMaterial);
@@ -37,32 +36,32 @@ export class Grid {
         cellMesh.position.set(
           col * cellWidth - ((this.width - 1) * cellWidth) / 2,
           ((this.length - 1) * cellHeight) / 2 - row * cellHeight,
-          0
+          0,
         );
 
         // Add the cell mesh to the scene and to the cells array
-        //scene.add(cellMesh);
+        // scene.add(cellMesh);
         this.cells.push(cellMesh);
 
         // Create meshes for the horizontal and vertical grid lines
         if (row !== this.length - 1) {
-          const horizontalLineGeometry = new THREE.BoxGeometry(cellWidth+0.01, 0.07, cellDepth+0.01);
+          const horizontalLineGeometry = new THREE.BoxGeometry(cellWidth + 0.01, 0.07, cellDepth + 0.01);
           const horizontalLineMesh = new THREE.Mesh(horizontalLineGeometry, lineMaterial);
           horizontalLineMesh.position.set(cellMesh.position.x, cellMesh.position.y - cellHeight / 2, cellMesh.position.z);
-          //scene.add(horizontalLineMesh);
+          // scene.add(horizontalLineMesh);
           this.lines.push(horizontalLineMesh);
         }
         if (col !== this.width - 1) {
-          const verticalLineGeometry = new THREE.BoxGeometry(0.07, cellHeight+0.01, cellDepth+0.1);
+          const verticalLineGeometry = new THREE.BoxGeometry(0.07, cellHeight + 0.01, cellDepth + 0.1);
           const verticalLineMesh = new THREE.Mesh(verticalLineGeometry, lineMaterial);
           verticalLineMesh.position.set(cellMesh.position.x + cellWidth / 2, cellMesh.position.y, cellMesh.position.z);
-          //scene.add(verticalLineMesh);
+          // scene.add(verticalLineMesh);
           this.lines.push(verticalLineMesh);
         }
       }
     }
-    //scene.add(...this.cells);
-    //scene.add(...this.lines);
+    // scene.add(...this.cells);
+    // scene.add(...this.lines);
   }
 
   // Export the grid as a GLTF file
@@ -70,13 +69,11 @@ export class Grid {
     const exportScene = new THREE.Scene();
     exportScene.add(...this.cells);
     exportScene.add(...this.lines);
-    
-    this.gltfExporter.parse(exportScene, function (result) {
+
+    this.gltfExporter.parse(exportScene, (result) => {
       const gltfBlob = new Blob([JSON.stringify(result)], { type: 'application/octet-stream' });
       const gltfUrl = URL.createObjectURL(gltfBlob);
       // Do something with the gltfUrl
     });
   }
-  
 }
-

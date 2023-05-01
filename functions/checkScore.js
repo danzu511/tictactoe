@@ -1,17 +1,16 @@
-
 export function checkScore(newGrid, dim, colors) {
-    const baseColor = colors[0];
-    const p1Color = colors[1];
-    const p2Color = colors[2];
+  const baseColor = colors[0];
+  const p1Color = colors[1];
+  const p2Color = colors[2];
 
-    const cells = newGrid.cells;
-    let win_threshold = dim;
-  
-    if (dim > 4) {
-      win_threshold = 4;
-    }
-  
-    // Check rows
+  const { cells } = newGrid;
+  let win_threshold = dim;
+
+  if (dim > 4) {
+    win_threshold = 4;
+  }
+
+  // Check rows
   for (let i = 0; i < cells.length; i += dim) {
     for (let j = 0; j <= dim - win_threshold; j++) {
       let rowSum = 0;
@@ -33,8 +32,8 @@ export function checkScore(newGrid, dim, colors) {
       }
     }
   }
-  
-   // Check columns
+
+  // Check columns
   for (let i = 0; i < dim; i++) {
     for (let j = 0; j <= dim - win_threshold; j++) {
       let colSum = 0;
@@ -56,14 +55,14 @@ export function checkScore(newGrid, dim, colors) {
       }
     }
   }
-  
+
   // Check diagonals
   for (let r = 0; r <= dim - win_threshold; r++) {
     for (let c = 0; c <= dim - win_threshold; c++) {
       let diagonal1Sum = 0;
       let diagonal2Sum = 0;
-      let diagonal1Cells = []; // Keep track of diagonal 1 cells
-      let diagonal2Cells = []; // Keep track of diagonal 2 cells
+      const diagonal1Cells = []; // Keep track of diagonal 1 cells
+      const diagonal2Cells = []; // Keep track of diagonal 2 cells
       for (let i = 0; i < win_threshold; i++) {
         // Check first diagonal
         const idx1 = (r + i) * dim + (c + i);
@@ -87,15 +86,15 @@ export function checkScore(newGrid, dim, colors) {
       }
       if (Math.abs(diagonal1Sum) >= win_threshold) {
         // Set color of diagonal 1 cells to white
-        diagonal1Cells.forEach(cell => cell.material.color.set(baseColor));
+        diagonal1Cells.forEach((cell) => cell.material.color.set(baseColor));
         return true;
       }
       if (Math.abs(diagonal2Sum) >= win_threshold) {
         // Set color of diagonal 2 cells to white
-        diagonal2Cells.forEach(cell => cell.material.color.set(baseColor));
+        diagonal2Cells.forEach((cell) => cell.material.color.set(baseColor));
         return true;
       }
     }
   }
   return false;
-  }
+}

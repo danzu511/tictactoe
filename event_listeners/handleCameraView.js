@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+
 export function handleCameraView(camera, renderer, scene, cameraDistance) {
   // Add event listener for mouse move to move the camera
   let isDragging = false;
@@ -10,12 +11,12 @@ export function handleCameraView(camera, renderer, scene, cameraDistance) {
   }
 
   // Initialize camera rotation
-  let cameraRotation = new THREE.Euler(0, 0, 0, 'XYZ');
+  const cameraRotation = new THREE.Euler(0, 0, 0, 'XYZ');
 
   document.addEventListener('mousemove', (event) => {
     // Check if the mouse pointer is over the slider container
     const isOverSlider = event.target.closest('#slider-container') !== null;
-    console.log(event.clientX, event.clientY)
+    console.log(event.clientX, event.clientY);
     // Disable camera rotation if the mouse is over the slider
     if (isOverSlider) {
       isDragging = false;
@@ -32,7 +33,7 @@ export function handleCameraView(camera, renderer, scene, cameraDistance) {
         toRadians(deltaMove.y * 0.1),
         toRadians(deltaMove.x * 0.1),
         0,
-        'XYZ'
+        'XYZ',
       );
 
       // Update camera rotation
@@ -63,7 +64,7 @@ export function handleCameraView(camera, renderer, scene, cameraDistance) {
   // Add event listener for keydown to move the camera
   const moveSpeed = 0.1 * camera.position.z;
   document.addEventListener('keydown', (event) => {
-    switch(event.key) {
+    switch (event.key) {
       case 'w':
         camera.position.y += moveSpeed;
         break;
@@ -82,10 +83,10 @@ export function handleCameraView(camera, renderer, scene, cameraDistance) {
 
   // Add event listener to re-align camera to starting position
   document.addEventListener('keydown', (event) => {
-    if(event.key === 'r'){
-      camera.position.set(0,0,cameraDistance)
+    if (event.key === 'r') {
+      camera.position.set(0, 0, cameraDistance);
       camera.lookAt(new THREE.Vector3(0, 0, 0));
-      renderer.render(scene, camera)
+      renderer.render(scene, camera);
     }
   });
 }

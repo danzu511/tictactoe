@@ -1,6 +1,6 @@
 export function createInput() {
   // create a div element for the container
-  const slidecontainer = document.createElement("div");
+  const slidecontainer = document.createElement('div');
   slidecontainer.classList.add('slidecontainer');
   slidecontainer.style.display = 'flex';
   slidecontainer.style.alignItems = 'center';
@@ -33,11 +33,11 @@ export function createInput() {
   slidecontainer.appendChild(customSlider);
   slidecontainer.appendChild(valueDisplay);
 
-  slidecontainer.style.position = "absolute";
-  slidecontainer.style.top = "10%";
-  slidecontainer.id = "slider-container"
+  slidecontainer.style.position = 'absolute';
+  slidecontainer.style.top = '10%';
+  slidecontainer.id = 'slider-container';
 
-  //slidecontainer.style.transform = "translate(-50%, -50%)";
+  // slidecontainer.style.transform = "translate(-50%, -50%)";
 
   return slidecontainer;
 }
