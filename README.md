@@ -9,7 +9,6 @@ Overview of the project:
     2. Back end at: https://tictactoe-back.onrender.com/ 
 - No mobile support. On narrow screens html elements can start to stack up, looking clunky.
 
-
 Gameplay Tutorial:
 - https://tictactoe-fmwd.onrender.com/
 - Create grid with different dimensions using slider
@@ -19,7 +18,8 @@ Gameplay Tutorial:
 - In a 3x3 grid point comes from 3 in row, in 4x4 or larger get point for 4 in row
 - After scoring, the cells of the scoring line are cleared
 - Points are shown on screen next to colored boxes 
-- Turn count is scaled with the dimensions of the grid
+- Turn count is scaled with the dimensions of the grid. turnCount = dimension^2 + 1
+- Game is unfinished in case all cells are colored and there are still turns left. In that case game is not recorded.
 - After game is over, it's formatted and stored in a database 
 
 Viewing old games:
@@ -32,8 +32,9 @@ Viewing old games:
 Known bugs:
 1. When viewing old games and scrolling past the last or first game, event listeners which control turns, are removed. They are created back by switching games again. I suppose try to fix the part "else if (event.key === 'ArrowUp'|| event.key === 'ArrowDown')" inside renderGrid, as it deletes the event listeners.
 2. Old eventlisteners for scrolling through games are not removed, atleast when pressing oldGames again
-3. Changing screen sizes without refresh messes up the UI
-4. Outside API used for getting user's IP doesn't always work
+4. Eventlistener for coloring the grid is not removed when creating a new grid before the game has finished.
+4. Changing screen sizes without refresh messes up the UI
+5. Outside API used for getting user's IP doesn't always work
 
 Set up guide for local hosting/development:
 1. "npm install" to install node_modules

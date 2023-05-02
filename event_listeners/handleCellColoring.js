@@ -5,17 +5,20 @@ import Game from '../models/Game.js';
 import { storeGame } from '../functions/storeGame.js';
 import { checkWinner } from '../functions/checkWinner.js';
 import { Grid } from '../models/Grid.js';
+import { updateTurns } from '../functions/updateTurns.js';
+import { checkAllCellsColored } from '../functions/checkAllCells.js';
+import { showAlert } from '../functions/showAlert.js';
 
 export function handleCellColoring(newGrid, scene, renderer, colors, turn, camera, dim, points) {
   const baseColor = colors[0];
   const p1Color = colors[1];
   const p2Color = colors[2];
   const turnCount = (dim * dim) + 1;
+  let turnIndex = 0;
   let gameOver = false;
   const game = new Game();
   console.log('newgame created');
-  // Add event listener for mouse click to select cells
-  document.addEventListener('click', (event) => {
+  function handleClick(event){
     if (!gameOver) {
       // Calculate the mouse position in normalized device coordinates (NDC)
       const mouse = new THREE.Vector2(
@@ -61,6 +64,8 @@ export function handleCellColoring(newGrid, scene, renderer, colors, turn, camer
           }
           game.storeGrid(cloneGrid, [...points]);
           turn *= -1;
+          turnIndex += 1;
+          updateTurns(turnCount, turnIndex);
         } else {
           console.log('Cell already selected');
         }
@@ -83,6 +88,14 @@ export function handleCellColoring(newGrid, scene, renderer, colors, turn, camer
           const latestGridObject = game.gridArray[game.gridArray.length - 1];
           latestGridObject.points = [...points];
         }
+        else{
+          if(checkAllCellsColored(newGrid, baseColor)){
+            console.log('all cells colored');
+            gameOver = true;
+            showAlert('Unfinished Game');
+            document.removeEventListener('click', handleClick);
+          }
+        }
         renderer.render(scene, camera);
         // Check if the game is over
         if (game.gridArray.length === turnCount) {
@@ -90,8 +103,14 @@ export function handleCellColoring(newGrid, scene, renderer, colors, turn, camer
           storeGame(game, turnCount, checkWinner(points), scene, baseColor);
           console.log('game over');
           gameOver = true;
+          showAlert('Game Over!');
+          document.removeEventListener('click', handleClick);
         }
       }
     }
+  }
+  // Add event listener for mouse click to select cells
+  document.addEventListener('click', (event) => {
+    handleClick(event);
   });
 }

@@ -7,7 +7,7 @@ export function showGames(gameArray, scene, renderer, camera) {
   let gameIndex = gameArray.length - 1;
   let currentGame = gameArray[gameIndex];
   console.log('gameArray: ', gameArray);
-  hideGameInfo('visible');
+  hideGameInfo('visible', 'hidden');
   updateWinrate(gameArray);
 
   renderGrid(currentGame, scene, renderer, camera);

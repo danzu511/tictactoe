@@ -6,12 +6,12 @@ import { createMaterialArray } from './functions/createMaterialArray.js';
 import { animateCamera } from './functions/animateCamera.js';
 import { createUI } from './functions/createUI.js';
 import { updatePoints } from './functions/updatePoints.js';
-import { renderGrid } from './functions/renderGrid.js';
 import { showGames } from './functions/showGames.js';
-import { storeGame, gameArray } from './functions/storeGame.js';
+import { gameArray } from './functions/storeGame.js';
 import { loadGames } from './functions/loadGames.js';
 import { hideGameInfo } from './functions/hideGameInfo.js';
 import { getUserIP } from './functions/getUserIp.js';
+import { updateTurns } from './functions/updateTurns.js';
 
 import './style.css';
 
@@ -96,6 +96,7 @@ function createGrid() {
   const slider = document.getElementById('myRange');
   const dim = parseInt(slider.value);
   const cameraDistance = dim * 1.5;
+  let turnCount = dim * dim + 1;
 
   // Create the grid with the new dimension
   const baseColor = 0xBbabbb;
@@ -106,7 +107,8 @@ function createGrid() {
   scene.add(...newGrid.cells);
 
   const turn = 1;
-  hideGameInfo('hidden');
+  hideGameInfo('hidden', 'visible');
+  updateTurns(turnCount, 0);
   // Handles cell coloring and scores
   handleCellColoring(newGrid, scene, renderer, colors, turn, camera, dim, points);
   // Handles camera movement

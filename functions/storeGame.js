@@ -2,7 +2,6 @@
 import axios from 'axios';
 import { createGameFromColors } from './loadGames.js';
 import { updateWinrate } from './updateWinrate.js';
-import { showAlert } from './showAlert.js';
 import { getIp, getURL } from '../main.js';
 
 export const gameArray = [];
@@ -51,7 +50,6 @@ export function storeGame(game, turnCount, winner, scene, baseColor) {
   };
   gameArray.push(newestGameObject);
   updateWinrate(gameArray);
-  showAlert('Game Over!');
 
   console.log('gameArray after game: ', gameArray);
 

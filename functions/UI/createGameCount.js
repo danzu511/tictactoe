@@ -1,5 +1,6 @@
 export function createGameCount(id) {
   // Show which game is being viewed, for example 1/10
+  // Show which turn is being viewed, for example 1/10
   const gameCountContainer = document.createElement('div');
   gameCountContainer.setAttribute('id', id);
 

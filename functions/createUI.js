@@ -3,6 +3,7 @@ import { createPoints } from './UI/createPoints';
 import { createButton } from './UI/createButton';
 import { createDateandGame } from './UI/createDate';
 import { createGameCount } from './UI/createGameCount';
+import { createTurnCount } from './UI/createTurnCount';
 
 export function createUI(callback, viewOldGames) {
   const uiContainer = document.createElement('div');
@@ -12,6 +13,7 @@ export function createUI(callback, viewOldGames) {
   const oldGamesButton = createButton(viewOldGames, 'old-games-button', 'Old Games');
   const date = createDateandGame('timeGame-display');
   const gameCount = createGameCount('game-count');
+  const turnCount = createTurnCount('turn-count');
 
   uiContainer.appendChild(input);
   uiContainer.appendChild(points);
@@ -19,5 +21,6 @@ export function createUI(callback, viewOldGames) {
   uiContainer.appendChild(oldGamesButton);
   uiContainer.appendChild(date);
   uiContainer.appendChild(gameCount);
+  uiContainer.appendChild(turnCount);
   return uiContainer;
 }
